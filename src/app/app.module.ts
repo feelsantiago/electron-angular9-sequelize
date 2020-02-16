@@ -17,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
 
 import { AppComponent } from './app.component';
-import { DatabaseModule } from './database/databse.module';
+import { DatabaseModule } from './database/database.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -27,6 +27,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
     declarations: [AppComponent],
     imports: [
+        DatabaseModule,
         BrowserModule,
         FormsModule,
         HttpClientModule,

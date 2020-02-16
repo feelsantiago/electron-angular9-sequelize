@@ -1,4 +1,5 @@
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 /**
  * Custom angular webpack configuration
  */
@@ -22,17 +23,7 @@ module.exports = (config, options) => {
     }
 
     // start of extra configs
-    config.externals = {
-        typeorm: "require('typeorm')",
-        mysql: "require('mysql')",
-    };
-
-    const databaseAlias = {
-        typeorm: path.resolve(__dirname, "../node_modules/typeorm/typeorm-model-shim"),
-        mysql: path.resolve(__dirname, "../node_modules/mysql/index"),
-    }
-
-    config.resolve.alias = { ...config.resolve.alias, ...databaseAlias }
+    config.externals = [nodeExternals()];
 
     return config;
 }

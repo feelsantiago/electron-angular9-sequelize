@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ElectronService } from './core/services';
 import { AppConfig } from '../environments/environment';
-import { RepositoryService } from './database/repository.service';
-import { TestService } from './test.service';
-import { Test } from './database/entities/test.entity';
+import { Test } from './database/models/test.model';
+import { DatabaseService } from './database/database.service';
 
 @Component({
     selector: 'app-root',
@@ -15,19 +14,16 @@ export class AppComponent implements OnInit {
     constructor(
         public electronService: ElectronService,
         private translate: TranslateService,
-        private testService: TestService,
+        private databaseProvide: DatabaseService,
     ) {
         translate.setDefaultLang('en');
     }
 
     public async ngOnInit(): Promise<void> {
-        // const result = await this.repositoryService.Tests.manager.save({ title: 'test', description: 'description' });
+        await this.databaseProvide.sync();
 
-        const connection = await this.testService.connection;
-        const test = new Test();
-        test.name = 'asd';
-        test.description = 'asdasd';
-        const result = await connection.manager.save(test);
+        const test = new Test({ name: 'asdasd', description: 'asdasd' });
+        const result = await test.save();
         console.log(result);
     }
 }
