@@ -99,6 +99,11 @@
         "node": ">=10.13.0"
     },
     "dependencies": {
-        "tslib": "1.10.0"
+        "mysql": "2.18.1",
+        "mysql2": "2.1.0",
+        "reflect-metadata": "0.1.13",
+        "tslib": "1.10.0",
+        "typeorm": "0.2.22",
+        "webpack-node-externals": "1.7.2"
     }
 }
